@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restian Zulfikri — Portofolio Konten Kreator & Editor Video</title>
+    
+    <!-- Google Font: Inter untuk estetika Swiss Design yang bersih dan kokoh -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS untuk tata letak modern -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons untuk ikonografi minimalis khas Apple -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: '#111111',
+                        accent: '#2563EB', // Blue Accent khas Apple
+                        bgSecondary: '#F8F8F8',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Desain Kursor Kustom "Liquid Glass" Khusus Desktop */
+        @media (min-width: 1024px) {
+            body, a, button, select, input, textarea, .project-filter-btn {
+                cursor: none !important;
+            }
+            #liquid-glass-cursor {
+                background: rgba(255, 255, 255, 0.15);
+                border: 1px solid rgba(0, 0, 0, 0.12);
+                box-shadow: 
+                    0 8px 32px rgba(0, 0, 0, 0.08), 
+                    inset 0 1px 3px rgba(255, 255, 255, 0.6),
+                    inset 0 -1px 3px rgba(0, 0, 0, 0.04);
+                backdrop-filter: blur(8px) saturate(140%);
+                -webkit-backdrop-filter: blur(8px) saturate(140%);
+                transform-origin: center center;
+                will-change: transform;
+                transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+            }
+            /* Efek hisap magnetik kursor saat menyentuh tombol */
+            .liquid-glass-hover {
+                width: 72px !important;
+                height: 72px !important;
+                background: rgba(37, 99, 235, 0.06) !important;
+                border-color: rgba(37, 99, 235, 0.35) !important;
+                box-shadow: 
+                    0 16px 36px rgba(37, 99, 235, 0.15), 
+                    inset 0 2px 6px rgba(255, 255, 255, 0.8),
+                    inset 0 -2px 6px rgba(37, 99, 235, 0.05) !important;
+            }
+        }
+
+        /* Menghilangkan scrollbar default untuk keselarasan visual */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFFFFF;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E5E7EB;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D1D5DB;
+        }
+
+        /* Latar belakang grid minimalis */
+        .grid-bg {
+            background-image: radial-gradient(#E5E7EB 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+
+        /* Transisi reveal saat digulir */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animasi mengambang untuk badge di sekeliling foto */
+        @keyframes float-slow-1 {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes float-slow-2 {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(10px); }
+        }
+        @keyframes float-slow-3 {
+            0%, 100% { transform: translateX(0px) translateY(0px); }
+            50% { transform: translateX(6px) translateY(-6px); }
+        }
+        .animate-float-1 { animation: float-slow-1 5s ease-in-out infinite; }
+        .animate-float-2 { animation: float-slow-2 6s ease-in-out infinite; }
+        .animate-float-3 { animation: float-slow-3 5.5s ease-in-out infinite; }
+    </style>
+</head>
+<body class="bg-white text-brand font-sans antialiased selection:bg-accent/10 selection:text-accent relative overflow-x-hidden">
+
+    <!-- Elemen Kursor Kustom Liquid Glass -->
+    <div id="liquid-glass-cursor" class="fixed pointer-events-none z-[9999] hidden lg:block w-10 h-10 rounded-full">
+        <!-- Titik refleksi spekular kaca (titik kilau 3D) -->
+        <div class="absolute top-2 left-2.5 w-2 h-1.5 bg-white/60 rounded-full blur-[0.5px] transform -rotate-12"></div>
+    </div>
+
+    <!-- Header / Navigasi -->
+    <header id="navbar" class="fixed top-0 left-0 w-full h-20 z-50 transition-all duration-300 border-b border-transparent">
+        <div class="max-w-7xl mx-auto h-full px-6 md:px-12 flex items-center justify-between">
+            <a href="#home" class="text-lg font-bold tracking-tight hover:opacity-80 transition-opacity flex items-center gap-2">
+                <span class="w-2.5 h-2.5 bg-accent rounded-full animate-pulse-slow"></span>
+                <span>RESTIAN ZULFIKRI</span>
+            </a>
+
+            <!-- Navigasi Desktop -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#home" class="hover:text-accent transition-colors duration-200 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-accent hover:after:w-full after:transition-all after:duration-300">Beranda</a>
+                <a href="#about" class="hover:text-accent transition-colors duration-200 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-accent hover:after:w-full after:transition-all after:duration-300">Tentang</a>
+                <a href="#projects" class="hover:text-accent transition-colors duration-200 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-accent hover:after:w-full after:transition-all after:duration-300">Karya</a>
+                <a href="#timeline" class="hover:text-accent transition-colors duration-200 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-accent hover:after:w-full after:transition-all after:duration-300">Perjalanan</a>
+                <a href="#skills" class="hover:text-accent transition-colors duration-200 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-accent hover:after:w-full after:transition-all after:duration-300">Daily Tools</a>
+                <a href="#contact" class="hover:text-accent transition-colors duration-200 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-accent hover:after:w-full after:transition-all after:duration-300">Kontak</a>
+            </nav>
+
+            <!-- Tombol Menu Seluler (Mobile Hamburger) -->
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-brand" aria-label="Buka Menu">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Panel Drawer Seluler -->
+        <div id="mobile-drawer" class="fixed top-20 left-0 w-full bg-white border-b border-neutral-100 py-6 px-8 flex flex-col gap-5 shadow-lg hidden md:hidden z-40">
+            <a href="#home" class="mobile-nav-link text-base font-semibold py-2 border-b border-neutral-50">Beranda</a>
+            <a href="#about" class="mobile-nav-link text-base font-semibold py-2 border-b border-neutral-50">Tentang Saya</a>
+            <a href="#projects" class="mobile-nav-link text-base font-semibold py-2 border-b border-neutral-50">Karya Kreatif</a>
+            <a href="#timeline" class="mobile-nav-link text-base font-semibold py-2 border-b border-neutral-50">Riwayat Perjalanan</a>
+            <a href="#skills" class="mobile-nav-link text-base font-semibold py-2 border-b border-neutral-50">Daily Tools</a>
+            <a href="#contact" class="mobile-nav-link text-base font-semibold py-2">Kontak Kolaborasi</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen grid-bg flex items-center justify-center pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto overflow-hidden">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+            
+            <!-- Sisi Kiri: Sapaan & Narasi Headline -->
+            <div class="lg:col-span-7 flex flex-col items-start gap-8 z-10">
+                <div class="reveal reveal-visible inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-neutral-200/80 bg-neutral-50 text-xs font-semibold tracking-wide text-neutral-500">
+                    <span class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></span>
+                    Produksi Video & Konten Kreator 
+                </div>
+                
+                <h1 class="reveal reveal-visible text-[38px] sm:text-[52px] md:text-[68px] lg:text-[76px] font-extrabold tracking-tighter leading-[1.1] text-brand">
+                    Halo, saya <span class="text-accent">Restian</span>.<br>
+                    Content Creator & Mobile Video Editor.
+                </h1>
+                
+                <p class="reveal reveal-visible text-base sm:text-lg text-neutral-500 leading-relaxed max-w-xl font-light">
+                    Saya dapat membuat karya visual bernilai estetika tinggi dengan elemen yang cocok. Gabungan asik antara logika terstruktur mekatronika dan kreativitas tanpa batas, modal smartphone saja!
+                </p>
+                
+                <div class="reveal reveal-visible flex flex-wrap gap-4 pt-2">
+                    <a href="#projects" class="px-7 py-4 rounded-full bg-brand text-white text-sm font-semibold hover:bg-accent transition-all duration-300 shadow-sm flex items-center gap-2">
+                        <span>Lihat Karya</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#contact" class="px-7 py-4 rounded-full border border-neutral-200 text-brand text-sm font-semibold bg-white hover:bg-neutral-50 hover:border-brand transition-all duration-300">
+                        Kontak Saya
+                    </a>
+                </div>
+            </div>
+
+            <!-- Sisi Kanan: Foto pp.jpeg dengan 6 Ikon Platform Mengambang -->
+            <div class="lg:col-span-5 flex justify-center items-center z-10">
+                <div class="relative w-full max-w-[340px]">
+                    
+                    <!-- Bingkai Parallax Utama untuk Video -->
+<div id="parallax-frame" class="relative w-full aspect-[9/14] rounded-[40px] overflow-hidden bg-neutral-100 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.15)] border border-neutral-200/80 transition-transform duration-300 ease-out z-10">
+
+    <video
+        class="w-full h-full object-cover select-none"
+        autoplay
+        muted
+        loop
+        playsinline
+        ontimeupdate="if(this.currentTime >= 30){this.currentTime = 0; this.play();}">
+    <source src="bahan/assets/videos/perkenalan1.mp4" type="video/mp4">
+</video>
+
+    <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none"></div>
+
+</div>
+
+                    <!-- 1. TikTok Badge (Kiri Atas) -->
+                    <div class="absolute top-[-25px] left-[-25px] w-12 h-12 rounded-full bg-black shadow-lg flex items-center justify-center border border-neutral-800 z-20 animate-float-1">
+
+    <img
+        src="bahan/assets/images/tt.png"
+        alt="TikTok Profile"
+        class="w-full h-full rounded-full object-cover">
+
+</div>
+
+                    <!-- 2. Instagram Badge (Kanan Atas) -->
+<div class="absolute top-[10px] right-[-30px] w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center border border-neutral-150 z-20 animate-float-2">
+    <img src="bahan/assets/images/instagram.jfif" alt="Instagram" class="w-12 h-12 object-contain">
+</div>
+
+                   <!-- 3. CapCut Badge (Kiri Tengah) -->
+<div class="absolute top-[40%] left-[-45px] w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center border border-neutral-150 z-20 animate-float-3">
+    <img src="bahan/assets/images/capcut.png"
+        alt="CapCut"
+        class="w-10 h-10 object-contain">
+</div>
+
+                    <!-- 4. Pinterest Badge (Kiri Bawah) -->
+<div class="absolute bottom-[15%] left-[-35px] w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center border border-neutral-150 z-20 animate-float-1">
+    <img
+        src="bahan/assets/images/pinterest-icon.png"
+        alt="Pinterest"
+        class="w-8 h-8 object-contain">
+</div>
+                    <!-- 5. Canva Badge (Kanan Tengah) -->
+<div class="absolute top-[35%] right-[-40px] w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center border border-neutral-150 z-20 animate-float-2">
+    <img
+        src="bahan/assets/images/canva.png"
+        alt="Canva"
+        class="w-10 h-10 object-contain">
+</div>
+
+                 <!-- 6. Alight Motion Badge (Kanan Bawah) -->
+<div class="absolute bottom-[-10px] right-[-10px] w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center border border-neutral-150 z-20 animate-float-3">
+    <img
+        src="bahan/assets/images/alight.jfif"
+        alt="Alight Motion"
+        class="w-8 h-8 object-contain">
+</div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Statistik Section -->
+    <section class="py-16 border-y border-neutral-100 bg-[#F8F8F8]">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            
+            <div class="flex flex-col items-center md:items-start text-center md:text-left reveal">
+                <div class="flex items-baseline">
+                    <span class="text-4xl md:text-5xl font-extrabold text-brand tracking-tighter animate-num" data-target="10">0</span>
+                    <span class="text-2xl font-bold text-accent">+</span>
+                </div>
+                <span class="text-xs font-semibold uppercase tracking-widest text-neutral-400 mt-2">Proyek Selesai</span>
+            </div>
+
+            <div class="flex flex-col items-center md:items-start text-center md:text-left reveal">
+                <div class="flex items-baseline">
+                    <span class="text-4xl md:text-5xl font-extrabold text-brand tracking-tighter animate-num" data-target="100">0</span>
+                    <span class="text-xl font-bold text-accent">K+</span>
+                </div>
+                <span class="text-xs font-semibold uppercase tracking-widest text-neutral-400 mt-2">Total Penonton</span>
+            </div>
+
+            <div class="flex flex-col items-center md:items-start text-center md:text-left reveal">
+                <div class="flex items-baseline">
+                    <span class="text-4xl md:text-5xl font-extrabold text-brand tracking-tighter animate-num" data-target="1">0</span>
+                    <span class="text-2xl font-bold text-accent">+</span>
+                </div>
+                <span class="text-xs font-semibold uppercase tracking-widest text-neutral-400 mt-2">Tahun Pengalaman</span>
+            </div>
+
+            <div class="flex flex-col items-center md:items-start text-center md:text-left reveal">
+                <div class="flex items-baseline">
+                    <span class="text-4xl md:text-5xl font-extrabold text-brand tracking-tighter animate-num" data-target="1">0</span>
+                    <span class="text-xs font-bold text-accent ml-1">ST</span>
+                </div>
+                <span class="text-xs font-semibold uppercase tracking-widest text-neutral-400 mt-2">Juara 1 Vlog Nasional</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Tentang Saya Section -->
+    <section id="about" class="py-28 md:py-36 bg-[#FAFAFA] border-b border-neutral-100">
+        <div class="max-w-4xl mx-auto px-6 md:px-12 text-center flex flex-col items-center gap-10 reveal">
+            
+            <div>
+                <p class="text-xs font-bold tracking-widest text-accent uppercase mb-3">TENTANG SAYA</p>
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-brand max-w-2xl mx-auto">
+                    Mengintegrasikan Presisi Mekatronika dengan Estetika Visual Multimedia
+                </h2>
+            </div>
+
+            <div class="flex flex-col gap-6 text-neutral-600 font-light leading-relaxed text-sm sm:text-base text-justify sm:text-center max-w-3xl">
+                <p>
+                    Saya adalah lulusan dari <strong class="font-semibold text-brand">SMK Negeri 7 Semarang (STEMBA)</strong> jurusan Teknik Mekatronika. Latar belakang pendidikan ini membekali saya dengan pola pikir logis-analitis yang kuat, pemahaman sistem terstruktur, serta kedisiplinan tingkat tinggi.
+                </p>
+                <p>
+                    Namun, minat terbesar saya tertanam kuat pada bidang <strong class="font-semibold text-brand">Content Creation, Mobile Videography, dan Video Editing</strong>. Memanfaatkan ekosistem aplikasi seluler seperti <strong class="font-semibold text-brand">CapCut</strong>, saya mendedikasikan keahlian saya untuk mengonversi gagasan kreatif menjadi konten vertikal yang berdurasi singkat, memikat, dan memiliki retensi audiens yang optimal.
+                </p>
+                <p>
+                    Saya senantiasa mengikuti pergerakan tren digital secara aktif, menyusun rancangan konsep naskah yang matang, serta mengeksplorasi sudut pengambilan gambar yang unik demi menghasilkan karya visual berkualitas tinggi yang berdampak luas.
+                </p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-6 pt-6 border-t border-neutral-200/60 w-full max-w-xl">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-accent">
+                        <i data-lucide="check" class="w-4 h-4"></i>
+                    </div>
+                    <span class="text-xs font-semibold text-brand uppercase tracking-wider">Cepat Belajar</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-accent">
+                        <i data-lucide="check" class="w-4 h-4"></i>
+                    </div>
+                    <span class="text-xs font-semibold text-brand uppercase tracking-wider">Sangat Detail</span>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center text-accent">
+                        <i data-lucide="check" class="w-4 h-4"></i>
+                    </div>
+                    <span class="text-xs font-semibold text-brand uppercase tracking-wider">Kolaboratif</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Galeri Karya Kreatif Terpilih (3 Kolom Video Vertikal Reels 9:16 - Durasi Otomatis 15 Detik) -->
+    <section id="projects" class="py-28 md:py-36 bg-white">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 reveal">
+                <div>
+                    <p class="text-xs font-bold tracking-widest text-accent uppercase mb-3">PORTOFOLIO PILIHAN</p>
+                    <h2 class="text-3xl md:text-5xl font-extrabold tracking-tighter text-brand">
+                        Koleksi Karya Kreatif Terpilih
+                    </h2>
+                </div>
+
+                <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                    <button onclick="filterProjects('all')" class="project-filter-btn px-5 py-2.5 rounded-full bg-brand text-white border border-brand transition-all duration-300">Semua</button>
+                    <button onclick="filterProjects('vlog')" class="project-filter-btn px-5 py-2.5 rounded-full bg-white text-neutral-500 border border-neutral-200 hover:border-brand transition-all duration-300">Vlog Kampus</button>
+                    <button onclick="filterProjects('promosi')" class="project-filter-btn px-5 py-2.5 rounded-full bg-white text-neutral-500 border border-neutral-200 hover:border-brand transition-all duration-300">Edukasi & Promosi</button>
+                </div>
+            </div>
+
+            <!-- Grid Galeri Proyek (3 Kolom Format Reels 9:16) -->
+            <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-3 max-w-7xl mx-auto gap-8 transition-all duration-500">
+                
+                <!-- Proyek 1: Neon Sign Aesthetic / Video Kreatif 1 -->
+                <div class="project-card reveal bg-white rounded-3xl overflow-hidden border border-neutral-200/60 shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="vlog">
+                    <div>
+                        <div class="relative overflow-hidden aspect-[9/16] bg-neutral-900">
+                            <span class="absolute top-4 left-4 z-10 px-3 py-1 bg-yellow-500 text-white text-[10px] font-bold rounded-full tracking-wider uppercase">REEL 1</span>
+                            <!-- Menggunakan CDN video potret Mixkit, dibatasi durasi otomatis 15 detik -->
+                            <video class="w-full h-full object-contain" poster="" muted playsinline loop autoplay ontimeupdate="if(this.currentTime >= 30) {this.currentTime = 0;}">
+                                <source src="bahan/assets/videos/kamera1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs font-mono text-accent uppercase tracking-widest">Pembahasan Kamera Smartphone</span>
+                            <h3 class="text-lg font-bold text-brand mt-1.5 leading-snug">Anti-Banding pada Kamera</h3>
+                            <p class="text-neutral-500 text-xs mt-2 font-light leading-relaxed">Membahas mengenai solusi cahaya berkedip pada kamera smartphone dengan detail.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 flex flex-wrap gap-2 items-center">
+                        <span class="px-2.5 py-1 bg-neutral-100 rounded-lg text-[10px] text-neutral-600 font-medium">Teknologi</span>
+                        <span class="px-2.5 py-1 bg-neutral-100 rounded-lg text-[10px] text-neutral-600 font-medium">Kamera</span>
+                        <button onclick="openModal('Pembahasan Kamera Smartphone', 'Karya video klip vertikal berskala 9:16 yang membahas solusi dari perekaman kamera smartphone yang berkedip ketika akan mengambil video ataupun foto.', 'neon-reel')" class="text-xs font-bold text-accent hover:underline flex items-center gap-1 ml-auto">
+                            <span>Detail</span>
+                            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Proyek 2: Photoshoot Model / Video Kreatif 2 -->
+                <div class="project-card reveal bg-white rounded-3xl overflow-hidden border border-neutral-200/60 shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="vlog">
+                    <div>
+                        <div class="relative overflow-hidden aspect-[9/16] bg-neutral-900">
+                            <span class="absolute top-4 left-4 z-10 px-3 py-1 bg-blue-600 text-white text-[10px] font-bold rounded-full tracking-wider uppercase">REEL 2</span>
+                            <!-- Menggunakan CDN video potret Mixkit, dibatasi durasi otomatis 15 detik -->
+                            <video class="w-full h-full object-cover" poster="" muted playsinline loop autoplay ontimeupdate="if(this.currentTime >= 30) {this.currentTime = 0;}">
+                                <source src="bahan/assets/videos/ekstra1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs font-mono text-accent uppercase tracking-widest">Kategori: Edukasi & B-Roll</span>
+                            <h3 class="text-lg font-bold text-brand mt-1.5 leading-snug">Kegiatan Ekstrakurikuler</h3>
+                            <p class="text-neutral-500 text-xs mt-2 font-light leading-relaxed">Membuat konten dengan B-Roll yang didapat dari sumber eksternal.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 flex flex-wrap gap-2 items-center">
+                        <span class="px-2.5 py-1 bg-neutral-100 rounded-lg text-[10px] text-neutral-600 font-medium">Edukasi</span>
+                        <span class="px-2.5 py-1 bg-neutral-100 rounded-lg text-[10px] text-neutral-600 font-medium">60 Detik</span>
+                        <button onclick="openModal('Kategori: Edukasi & B-Roll', 'Video yang menggunakan B-Roll yang didapat dari internet sebagai bantuan dalam memaparkan penjelasan isi konten.', 'photoshoot-reel')" class="text-xs font-bold text-accent hover:underline flex items-center gap-1 ml-auto">
+                            <span>Detail</span>
+                            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Proyek 3: Bubble Gum Girl / Video Kreatif 3 -->
+                <div class="project-card reveal bg-white rounded-3xl overflow-hidden border border-neutral-200/60 shadow-sm hover:-translate-y-2 hover:shadow-xl transition-all duration-300 flex flex-col justify-between" data-category="promosi">
+                    <div>
+                        <div class="relative overflow-hidden aspect-[9/16] bg-neutral-900">
+                            <span class="absolute top-4 left-4 z-10 px-3 py-1 bg-purple-600 text-white text-[10px] font-bold rounded-full tracking-wider uppercase">REEL 3</span>
+                            <!-- Menggunakan CDN video potret Mixkit, dibatasi durasi otomatis 15 detik -->
+                            <video class="w-full h-full object-cover" poster="https://placehold.co/1080x1920/7E22CE/FFFFFF?text=Mixkit+Bubble+Gum+Reel" muted playsinline loop autoplay ontimeupdate="if(this.currentTime >= 30) {this.currentTime = 0;}">
+                                <source src="bahan/assets/videos/stekom1.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-xs font-mono text-accent uppercase tracking-widest">Vlog Harian</span>
+                            <h3 class="text-lg font-bold text-brand mt-1.5 leading-snug">Kunjungan Universitas Stekom</h3>
+                            <p class="text-neutral-500 text-xs mt-2 font-light leading-relaxed">Membuat video vlog aktivitas keseharian saat berada di Universitas Stekom bernuansa senang.</p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0 flex flex-wrap gap-2 items-center">
+                        <span class="px-2.5 py-1 bg-neutral-100 rounded-lg text-[10px] text-neutral-600 font-medium">Vlog</span>
+                        <span class="px-2.5 py-1 bg-neutral-100 rounded-lg text-[10px] text-neutral-600 font-medium">Happy</span>
+                        <button onclick="openModal('Vlog Harian', 'Video vlog yang dibuat menggunakan teks typografi dengan perpindahan scene by scene ketika sedang mengikuti kegiatan acara.', 'bubble-gum-reel')" class="text-xs font-bold text-accent hover:underline flex items-center gap-1 ml-auto">
+                            <span>Detail</span>
+                            <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Riwayat Garis Waktu Perjalanan -->
+    <section id="timeline" class="py-28 md:py-36 bg-[#FAFAFA] border-y border-neutral-100">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            
+            <div class="text-center max-w-2xl mx-auto mb-20 reveal">
+                <p class="text-xs font-bold tracking-widest text-accent uppercase mb-3">RIWAYAT PERJALANAN</p>
+                <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-brand">Edukasi, Pengalaman, & Pencapaian</h2>
+                <p class="text-neutral-500 text-sm sm:text-base font-light mt-4">Garis waktu dedikasi saya di bidang mekatronika, produksi konten kreatif, hingga kepengurusan organisasi.</p>
+            </div>
+
+            <div class="relative border-l border-neutral-200 max-w-4xl mx-auto pl-6 sm:pl-10 flex flex-col gap-12">
+                
+                <!-- Item 1: DinusFest Juara 1 -->
+                <div class="relative reveal">
+                    <div class="absolute -left-[31px] sm:-left-[47px] top-1 w-[14px] h-[14px] rounded-full bg-accent border-4 border-white shadow"></div>
+                    <span class="text-xs font-mono font-bold text-accent uppercase tracking-widest">Awal 2025</span>
+                    <h3 class="text-xl font-extrabold text-brand mt-1.5">Juara 1 Vlog Nasional</h3>
+                    <p class="text-xs font-bold text-neutral-400 uppercase tracking-widest mt-0.5">DinusFest 2025 (UDINUS)</p>
+                    <p class="text-neutral-500 text-sm mt-3 leading-relaxed font-light">
+                        Mewakili sekolah dalam kompetisi tingkat nasional DinusFest 2025 untuk memproduksi video pengenalan lingkungan kampus. Melalui teknik pengambilan gambar yang dinamis dan peran aktor yang profesional, berhasil meraih penghargaan Juara 1 Nasional.
+                    </p>
+                </div>
+
+                <!-- Item 2: SMK Negeri 7 Semarang -->
+                <div class="relative reveal">
+                    <div class="absolute -left-[31px] sm:-left-[47px] top-1 w-[14px] h-[14px] rounded-full bg-brand border-4 border-white shadow"></div>
+                    <span class="text-xs font-mono font-bold text-neutral-400 uppercase tracking-widest">2023 – 2026</span>
+                    <h3 class="text-xl font-extrabold text-brand mt-1.5">Pendidikan Teknik Mekatronika</h3>
+                    <p class="text-xs font-bold text-neutral-400 uppercase tracking-widest mt-0.5">SMK Negeri 7 Semarang (STEMBA)</p>
+                    <p class="text-neutral-500 text-sm mt-3 leading-relaxed font-light">
+                        Mempelajari integrasi sistem mekanik, kelistrikan, serta pemrograman otomatisasi pada sekolah kejuruan rujukan. Pendidikan ini melatih saya untuk memiliki pola pikir logis, presisi, serta responsif dalam menyelesaikan isu teknis.
+                    </p>
+                </div>
+
+                <!-- Item 3: Content Creator Personal Project -->
+                <div class="relative reveal">
+                    <div class="absolute -left-[31px] sm:-left-[47px] top-1 w-[14px] h-[14px] rounded-full bg-brand border-4 border-white shadow"></div>
+                    <span class="text-xs font-mono font-bold text-neutral-400 uppercase tracking-widest">2023 — Sekarang</span>
+                    <h3 class="text-xl font-extrabold text-brand mt-1.5">Kreator Konten Mandiri (Proyek Personal)</h3>
+                    <p class="text-xs font-bold text-neutral-400 uppercase tracking-widest mt-0.5">Kreator Konten & Editor Video</p>
+                    <p class="text-neutral-500 text-sm mt-3 leading-relaxed font-light">
+                        Aktif memproduksi konten visual berformat vertikal untuk media sosial. Mengelola seluruh proses produksi secara mandiri, mulai dari perumusan ide dasar, penulisan naskah, perekaman visual menggunakan perangkat seluler, hingga proses penyuntingan akhir di CapCut.
+                    </p>
+                </div>
+
+                <!-- Item 4: Pramuka (Ambalan) -->
+                <div class="relative reveal">
+                    <div class="absolute -left-[31px] sm:-left-[47px] top-1 w-[14px] h-[14px] rounded-full bg-brand border-4 border-white shadow"></div>
+                    <span class="text-xs font-mono font-bold text-neutral-400 uppercase tracking-widest">2023 — 2025</span>
+                    <h3 class="text-xl font-extrabold text-brand mt-1.5">Hubungan Masyarakat (Humas) Eksternal Pramuka</h3>
+                    <p class="text-xs font-bold text-neutral-400 uppercase tracking-widest mt-0.5">Organisasi Kepanduan Pramuka</p>
+                    <p class="text-neutral-500 text-sm mt-3 leading-relaxed font-light">
+                        Bertindak sebagai komunikator yang menjembatani hubungan dengan pihak eksternal, mengurus dokumen perizinan, melakukan survei acara lokasi, serta mengoordinasikan jalannya operasional kegiatan luar ruangan.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Daily Tools / Skills Section -->
+    <section id="skills" class="py-28 md:py-36 bg-white">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-4 flex flex-col items-start gap-4 reveal">
+                    <p class="text-xs font-bold tracking-widest text-accent uppercase">PERANGKAT UTAMA</p>
+                    <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight text-brand">Perangkat Kerja Pendukung Produktivitas</h2>
+                    <p class="text-neutral-500 text-sm font-light leading-relaxed">
+                        Aplikasi dan ekosistem digital yang saya gunakan untuk menunjang proses penyuntingan visual secara cepat, terstruktur, dan menghasilkan output berstandar profesional.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-8 grid grid-cols-2 sm:grid-cols-3 gap-4 reveal">
+                    
+                    <div class="bg-neutral-50 border border-neutral-100 hover:border-accent p-6 rounded-2xl flex flex-col gap-3 transition-all duration-300">
+                        <i data-lucide="video" class="w-6 h-6 text-accent"></i>
+                        <h4 class="text-sm font-bold text-brand">CapCut Mobile</h4>
+                        <p class="text-xs text-neutral-400 font-light">Penyuntingan video seluler efisiensi tinggi, transisi mulus, dan rendering cepat.</p>
+                    </div>
+
+                    <div class="bg-neutral-50 border border-neutral-100 hover:border-accent p-6 rounded-2xl flex flex-col gap-3 transition-all duration-300">
+                        <i data-lucide="palette" class="w-6 h-6 text-accent"></i>
+                        <h4 class="text-sm font-bold text-brand">Canva Pro</h4>
+                        <p class="text-xs text-neutral-400 font-light">Perancangan visual, tata letak, presentasi, serta pembuatan moodboard konsep.</p>
+                    </div>
+
+                    <div class="bg-neutral-50 border border-neutral-100 hover:border-accent p-6 rounded-2xl flex flex-col gap-3 transition-all duration-300">
+                        <i data-lucide="film" class="w-6 h-6 text-accent"></i>
+                        <h4 class="text-sm font-bold text-brand">Alight Motion</h4>
+                        <p class="text-xs text-neutral-400 font-light">Pembuatan grafis bergerak, animasi teks dinamis, dan kustomisasi transisi visual.</p>
+                    </div>
+
+                    <div class="bg-neutral-50 border border-neutral-100 hover:border-accent p-6 rounded-2xl flex flex-col gap-3 transition-all duration-300">
+                        <i data-lucide="smartphone" class="w-6 h-6 text-accent"></i>
+                        <h4 class="text-sm font-bold text-brand">TikTok Creator</h4>
+                        <p class="text-xs text-neutral-400 font-light">Analisis tren, pemetaan audio populer, serta penguasaan distribusi algoritma.</p>
+                    </div>
+
+                    <div class="bg-neutral-50 border border-neutral-100 hover:border-accent p-6 rounded-2xl flex flex-col gap-3 transition-all duration-300">
+                       <img src="bahan/assets/images/instagram.png" alt="Instagram" class="w-6 h-6 object-contain">
+                        <h4 class="text-sm font-bold text-brand">Instagram Reels</h4>
+                        <p class="text-xs text-neutral-400 font-light">Penerapan strategi storytelling mikro berorientasi pada profil audiens profesional.</p>
+                    </div>
+
+                    <div class="bg-neutral-50 border border-neutral-100 hover:border-accent p-6 rounded-2xl flex flex-col gap-3 transition-all duration-300">
+                      <img src="bahan/assets/images/play.png" alt="YouTube" class="w-6 h-6 object-contain">
+                        <h4 class="text-sm font-bold text-brand">YouTube Shorts</h4>
+                        <p class="text-xs text-neutral-400 font-light">Produksi konten edukatif yang dirancang khusus mempertahankan retensi tinggi.</p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Kolaborasi & Kontak Medsos (Instagram & TikTok ke @restizu) -->
+    <section id="contact" class="py-28 md:py-36 bg-[#F8F8F8] border-t border-neutral-100">
+        <div class="max-w-4xl mx-auto px-6 text-center flex flex-col items-center gap-10 reveal">
+            
+            <div class="max-w-2xl">
+                <p class="text-xs font-bold tracking-widest text-accent uppercase mb-3">KOLABORASI</p>
+                <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter text-brand leading-[1.05]">
+                    Tertarik Memulai Proyek Kolaborasi Bersama Saya?
+                </h2>
+                <p class="text-neutral-500 text-base sm:text-lg font-light mt-6 leading-relaxed">
+                    Ingin memproduksi video promosi yang berdampak, video Reels/Shorts untuk pertumbuhan media sosial Anda, atau membutuhkan jasa penyuntingan video profesional? Silakan hubungi saya secara langsung melalui salah satu opsi di bawah ini.
+                </p>
+            </div>
+
+            <!-- Grid Kontak Kartu Premium ala Apple -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl mt-4">
+                
+                <!-- WhatsApp -->
+                <a href="https://wa.me/62895343356550" target="_blank" class="p-6 rounded-3xl bg-white border border-neutral-200/80 hover:border-green-500 hover:shadow-lg transition-all duration-300 flex items-center gap-4 text-left group">
+                    <div class="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center text-green-600 group-hover:bg-green-600 group-hover:text-white transition-all duration-300">
+                        <img
+    src="bahan/assets/images/wa.jfif"
+    alt="WhatsApp"
+    class="w-10 h-10 object-contain">
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-brand">WhatsApp</h4>
+                        <p class="text-xs text-neutral-400 mt-0.5">+62 895-3433-56550</p>
+                    </div>
+                    <i data-lucide="arrow-right" class="w-4 h-4 text-neutral-300 ml-auto group-hover:text-green-500 group-hover:translate-x-1 transition-all"></i>
+                </a>
+
+                <!-- Instagram (Diarahkan ke user @restizu) -->
+                <a href="https://www.instagram.com/restizu" target="_blank" class="p-6 rounded-3xl bg-white border border-neutral-200/80 hover:border-accent hover:shadow-lg transition-all duration-300 flex items-center gap-4 text-left group">
+                    <div class="w-12 h-12 rounded-full bg-pink-50 flex items-center justify-center text-pink-600 group-hover:bg-pink-600 group-hover:text-white transition-all duration-300">
+                        <img
+    src="bahan/assets/images/instagram.jfif"
+    alt="Instagram"
+    class="w-10 h-10 object-contain">
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-brand">Instagram</h4>
+                        <p class="text-xs text-neutral-400 mt-0.5">@restizu</p>
+                    </div>
+                    <i data-lucide="arrow-right" class="w-4 h-4 text-neutral-300 ml-auto group-hover:text-accent group-hover:translate-x-1 transition-all"></i>
+                </a>
+
+                <!-- TikTok (Diarahkan ke user @restizu) -->
+                <a href="https://www.tiktok.com/@restizu" target="_blank" class="p-6 rounded-3xl bg-white border border-neutral-200/80 hover:border-brand hover:shadow-lg transition-all duration-300 flex items-center gap-4 text-left group">
+                    <div class="w-12 h-12 rounded-full bg-neutral-900 flex items-center justify-center text-white group-hover:bg-neutral-800 transition-all duration-300">
+                        <!-- Custom SVG TikTok Logo -->
+                       <img
+    src="bahan/assets/images/tt.png"
+    alt="TikTok"
+    class="w-10 h-10 object-contain">
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-brand">TikTok</h4>
+                        <p class="text-xs text-neutral-400 mt-0.5">@restizu</p>
+                    </div>
+                    <i data-lucide="arrow-right" class="w-4 h-4 text-neutral-300 ml-auto group-hover:text-brand group-hover:translate-x-1 transition-all"></i>
+                </a>
+
+                <!-- Email Resmi -->
+                <a href="mailto:zulfikrirestian@gmail.com" class="p-6 rounded-3xl bg-white border border-neutral-200/80 hover:border-red-500 hover:shadow-lg transition-all duration-300 flex items-center gap-4 text-left group">
+                    <div class="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center text-red-600 group-hover:bg-red-600 group-hover:text-white transition-all duration-300">
+                        <i data-lucide="mail" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-sm font-bold text-brand">Email Resmi</h4>
+                        <p class="text-xs text-neutral-400 mt-0.5">zulfikrirestian@gmail.com</p>
+                    </div>
+                    <i data-lucide="arrow-right" class="w-4 h-4 text-neutral-300 ml-auto group-hover:text-red-500 group-hover:translate-x-1 transition-all"></i>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Minimalis -->
+    <footer class="py-12 bg-white border-t border-neutral-100 text-xs text-neutral-400 select-none">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col sm:flex-row items-center justify-between gap-6">
+            
+            <div class="flex items-center gap-2 font-bold tracking-tight text-neutral-800">
+                <span class="w-2.5 h-2.5 bg-accent rounded-full"></span>
+                <span>RESTIAN ZULFIKRI — KREATOR KONTEN</span>
+            </div>
+
+            <p class="font-light">© 2026 Restian Zulfikri. Hak Cipta Dilindungi.</p>
+
+            <button onclick="scrollToTop()" class="flex items-center gap-1 hover:text-brand font-medium transition-colors" aria-label="Kembali ke Atas">
+                <span>Kembali ke Atas</span>
+                <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+            </button>
+        </div>
+    </footer>
+
+    <!-- Elemen Modal Detail Proyek -->
+    <div id="project-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-white max-w-lg w-full rounded-3xl p-8 shadow-2xl border border-neutral-100 mx-6 relative transform scale-95 transition-all duration-300">
+            <button onclick="closeModal()" class="absolute top-6 right-6 p-1.5 rounded-full hover:bg-neutral-100 transition-colors" aria-label="Tutup">
+                <i data-lucide="x" class="w-5 h-5 text-neutral-500"></i>
+            </button>
+            <div id="modal-body-content" class="flex flex-col gap-4 mt-4">
+                <!-- Konten dinamis via JS -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* Inisialisasi ikon Lucide */
+        lucide.createIcons();
+
+        /* Kontrol Menu Hamburger Seluler */
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileDrawer = document.getElementById('mobile-drawer');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileDrawer.classList.toggle('hidden');
+        });
+
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileDrawer.classList.add('hidden');
+            });
+        });
+
+        /* Kontrol Kursor Kustom Liquid Glass (Hanya Desktop) */
+        const cursor = document.getElementById('liquid-glass-cursor');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        if (window.innerWidth >= 1024 && cursor) {
+            document.body.style.cursor = 'none';
+            
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            const updateCursor = () => {
+                const dx = mouseX - cursorX;
+                const dy = mouseY - cursorY;
+                
+                cursorX += dx * 0.15;
+                cursorY += dy * 0.15;
+
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                const stretch = Math.min(distance / 120, 0.35); 
+                const scaleX = 1 + stretch;
+                const scaleY = 1 - stretch;
+                const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+                cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%) rotate(${angle}deg) scale(${scaleX}, ${scaleY})`;
+                requestAnimationFrame(updateCursor);
+            };
+            
+            updateCursor();
+
+            const updateHoverStates = () => {
+                const hoverables = document.querySelectorAll('a, button, .project-card, .project-filter-btn');
+                hoverables.forEach(el => {
+                    el.addEventListener('mouseenter', () => cursor.classList.add('liquid-glass-hover'));
+                    el.addEventListener('mouseleave', () => cursor.classList.remove('liquid-glass-hover'));
+                });
+            };
+            updateHoverStates();
+            window.addEventListener('load', updateHoverStates);
+        }
+
+        /* Efek Tilt Parallax 3D Bingkai Foto Utama */
+        const parallaxFrame = document.getElementById('parallax-frame');
+        if (parallaxFrame && window.innerWidth >= 1024) {
+            document.addEventListener('mousemove', (e) => {
+                const xAxis = (window.innerWidth / 2 - e.pageX) / 45;
+                const yAxis = (window.innerHeight / 2 - e.pageY) / 45;
+                parallaxFrame.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            });
+
+            document.addEventListener('mouseleave', () => {
+                parallaxFrame.style.transform = `rotateY(0deg) rotateX(0deg)`;
+            });
+        }
+
+        /* Transisi Navbar Kaca saat Digulir */
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white/80', 'backdrop-blur-md', 'border-neutral-100');
+                navbar.classList.remove('border-transparent');
+            } else {
+                navbar.classList.remove('bg-white/80', 'backdrop-blur-md', 'border-neutral-100');
+                navbar.classList.add('border-transparent');
+            }
+        });
+
+        /* Mekanisme Scroll Reveal */
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOnScroll = () => {
+            revealElements.forEach(element => {
+                const windowHeight = window.innerHeight;
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 100;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('reveal-visible');
+                }
+            });
+        };
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        /* Filter Kategori Proyek */
+        function filterProjects(category) {
+            const cards = document.querySelectorAll('.project-card');
+            const buttons = document.querySelectorAll('.project-filter-btn');
+
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-brand', 'text-white', 'border-brand');
+                btn.classList.add('bg-white', 'text-neutral-500', 'border-neutral-200');
+            });
+
+            event.target.classList.remove('bg-white', 'text-neutral-500', 'border-neutral-200');
+            event.target.classList.add('bg-brand', 'text-white', 'border-brand');
+
+            cards.forEach(card => {
+                if (category === 'all' || card.getAttribute('data-category') === category) {
+                    card.style.display = 'flex';
+                    setTimeout(() => card.style.opacity = '1', 50);
+                } else {
+                    card.style.opacity = '0';
+                    setTimeout(() => card.style.display = 'none', 300);
+                }
+            });
+        }
+
+        /* Animasi Penghitung Angka Statistik (Counters) */
+        const stats = document.querySelectorAll('.animate-num');
+        let countStarted = false;
+
+        const startCount = () => {
+            stats.forEach(stat => {
+                const target = +stat.getAttribute('data-target');
+                let count = 0;
+                const speed = target / 50;
+
+                const updateCount = () => {
+                    if (count < target) {
+                        count += speed;
+                        stat.innerText = Math.ceil(count);
+                        setTimeout(updateCount, 25);
+                    } else {
+                        stat.innerText = target;
+                    }
+                };
+                updateCount();
+            });
+        };
+
+        const statsSection = document.querySelector('section[class*="border-y"]');
+        if (statsSection) {
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting && !countStarted) {
+                    countStarted = true;
+                    startCount();
+                }
+            }, { threshold: 0.5 });
+            observer.observe(statsSection);
+        }
+
+        /* Modal Detail Proyek */
+        const modal = document.getElementById('project-modal');
+        const modalBody = document.getElementById('modal-body-content');
+
+        function openModal(title, description, code) {
+            modalBody.innerHTML = `
+                <div class="flex items-center gap-2">
+                    <span class="px-2.5 py-1 bg-accent/10 text-accent text-[10px] font-bold rounded-md uppercase">Detail Karya</span>
+                </div>
+                <h3 class="text-xl font-bold text-brand mt-1">${title}</h3>
+                <p class="text-sm text-neutral-500 leading-relaxed font-light">${description}</p>
+                <div class="mt-4 flex gap-2">
+                    <button onclick="closeModal()" class="w-full py-2.5 text-center text-xs font-semibold bg-neutral-900 text-white rounded-xl hover:bg-brand transition-colors">Tutup</button>
+                </div>
+            `;
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+            modal.children[0].classList.remove('scale-95');
+            modal.children[0].classList.add('scale-100');
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.children[0].classList.remove('scale-100');
+            modal.children[0].classList.add('scale-95');
+        }
+
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>

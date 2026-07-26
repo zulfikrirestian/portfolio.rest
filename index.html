@@ -472,7 +472,11 @@
                     <!-- Wadah Video Rasio Asli 16:9 Penuh -->
                     <div class="relative overflow-hidden aspect-[16/9] w-full bg-black">
                         <span class="absolute top-4 left-4 z-10 px-3 py-1 bg-blue-600 text-white text-[10px] font-bold rounded-full tracking-wider uppercase">Vlog Landscape</span>
-                        <video class="w-full h-full object-cover" poster="" muted playsinline loop autoplay ontimeupdate="if(this.currentTime >= 30) {this.currentTime = 0;}">
+                       <video class="w-full h-full object-cover" 
+                           poster="" 
+                           controls
+                           playsinline 
+                           ontimeupdate="if(this.currentTime >= 30) {this.currentTime = 0; this.play();}">
                             <source src="https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4" type="video/mp4">
                             <source src="bahan/assets/videos/udinus.mp4" type="video/mp4">
                         </video>

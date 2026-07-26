@@ -456,6 +456,117 @@
         </div>
     </section>
 
+    <!-- Subheading: Format Landscape Baru 16:9 -->
+            <div class="mb-12 reveal">
+                <h3 class="text-lg font-bold text-brand flex items-center gap-2">
+                    <i data-lucide="tv" class="w-5 h-5 text-accent"></i>
+                    Video Format Landscape (Cinematic / YouTube 16:9)
+                </h3>
+            </div>
+
+            <!-- Grid Baru: 1 Kolom Penuh (Setiap Video Mengambil 1 Baris Utuh, 16:9 Tanpa Terpotong) -->
+            <div id="projects-landscape-grid" class="flex flex-col gap-16 max-w-4xl mx-auto transition-all duration-500">
+                
+                <!-- Proyek 4: Landscape Cinematic 1 (Full Width) -->
+                <div class="project-card reveal bg-white rounded-[32px] overflow-hidden border border-neutral-200/60 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col" data-category="promosi">
+                    <!-- Wadah Video Rasio Asli 16:9 Penuh -->
+                    <div class="relative overflow-hidden aspect-[16/9] w-full bg-black">
+                        <span class="absolute top-4 left-4 z-10 px-3 py-1 bg-blue-600 text-white text-[10px] font-bold rounded-full tracking-wider uppercase">Vlog Landscape</span>
+                        <video class="w-full h-full object-cover" poster="" muted playsinline loop autoplay ontimeupdate="if(this.currentTime >= 30) {this.currentTime = 0;}">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-forest-stream-in-the-sunlight-529-large.mp4" type="video/mp4">
+                            <source src="bahan/assets/videos/udinus.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <!-- Deskripsi Berada Tepat di Bawah Video -->
+                    <div class="p-8">
+                        <span class="text-xs font-mono text-accent uppercase tracking-widest">PENGENALAN KAMPUS</span>
+                        <h3 class="text-2xl font-bold text-brand mt-2 leading-snug">Lomba Vlog DINUSFEST</h3>
+                        <p class="text-neutral-500 text-sm mt-3 font-light leading-relaxed">
+                            Pembuatan video pengenalan Vlog di lingkungan Universitas Dian Nuswantoro dengan style pembawaan video yang menyenangkan dan ramah.
+                        </p>
+                        <!-- Kaki Kartu (Tags & Tombol Aksi) -->
+                        <div class="mt-6 pt-6 border-t border-neutral-100 flex flex-wrap gap-4 items-center justify-between">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-neutral-100 rounded-lg text-xs text-neutral-600 font-medium">Profil</span>
+                                <span class="px-3 py-1 bg-neutral-100 rounded-lg text-xs text-neutral-600 font-medium">Narasi</span>
+                                <span class="px-3 py-1 bg-neutral-100 rounded-lg text-xs text-neutral-600 font-medium">16:9 Full</span>
+                            </div>
+                            <button onclick="openModal('Lomba Vlog DINUSFEST', 'Video berformat 16:9 yang menggambarkan penjelasan mengenai suatu kampus atau universitas pada acara DinusFest 2025.', 'landscape-1')" class="text-xs font-bold text-accent hover:underline flex items-center gap-1">
+                                <span>Detail Selengkapnya</span>
+                                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyek 5: Landscape Cinematic 2 (Full Width) -->
+                <div class="project-card reveal bg-white rounded-[32px] overflow-hidden border border-neutral-200/60 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col" data-category="vlog">
+                    <!-- Wadah Video Rasio Asli 16:9 Penuh -->
+                    <div class="relative overflow-hidden aspect-[16/9] w-full bg-black">
+                        <span class="absolute top-4 left-4 z-10 px-3 py-1 bg-emerald-600 text-white text-[10px] font-bold rounded-full tracking-wider uppercase">Dramatic Cinematic</span>
+                        <video class="w-full h-full object-cover" poster="" muted playsinline loop autoplay ontimeupdate="if(this.currentTime >= 30) {this.currentTime = 0;}">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-sunset-over-a-lake-landscape-43184-large.mp4" type="video/mp4">
+                            <source src="bahan/assets/videos/perpisahan.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <!-- Deskripsi Berada Tepat di Bawah Video -->
+                    <div class="p-8">
+                        <span class="text-xs font-mono text-accent uppercase tracking-widest">Dokumenter Mini</span>
+                        <h3 class="text-2xl font-bold text-brand mt-2 leading-snug">Perpisahan Sekolah Kelulusan</h3>
+                        <p class="text-neutral-500 text-sm mt-3 font-light leading-relaxed">
+                            Sebuah narasi visual perjalanan selama menempuh pendidikan di SMK Negeri 7 Semarang selama 3 tahun dengan penyajian dramatis.
+                        </p>
+                        <!-- Kaki Kartu (Tags & Tombol Aksi) -->
+                        <div class="mt-6 pt-6 border-t border-neutral-100 flex flex-wrap gap-4 items-center justify-between">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-neutral-100 rounded-lg text-xs text-neutral-600 font-medium">Dokumenter</span>
+                                <span class="px-3 py-1 bg-neutral-100 rounded-lg text-xs text-neutral-600 font-medium">Kenangan</span>
+                                <span class="px-3 py-1 bg-neutral-100 rounded-lg text-xs text-neutral-600 font-medium">Sekolah</span>
+                            </div>
+                            <button onclick="openModal('Perpisahan Sekolah Kelulusan', 'Karya dokumentasi selama menempuh pendidikan dengan mengambil cuplikan tempat tempat di lingkungan sekolah dipadukan dengan efek, visual, dan audio yang cinematic.', 'landscape-2')" class="text-xs font-bold text-accent hover:underline flex items-center gap-1">
+                                <span>Detail Selengkapnya</span>
+                                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proyek 6:Cinematic Slowmotion (Full Width) -->
+                <div class="project-card reveal bg-white rounded-[32px] overflow-hidden border border-neutral-200/60 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col" data-category="promosi">
+                    <!-- Wadah Video Rasio Asli 16:9 Penuh -->
+                    <div class="relative overflow-hidden aspect-[16/9] w-full bg-black">
+                        <span class="absolute top-4 left-4 z-10 px-3 py-1 bg-red-600 text-white text-[10px] font-bold rounded-full tracking-wider uppercase">CINEMATIC 3</span>
+                        <video class="w-full h-full object-cover" poster="" muted playsinline loop autoplay ontimeupdate="if(this.currentTime >= 30) {this.currentTime = 0;}">
+                            <source src="https://assets.mixkit.co/videos/preview/mixkit-modern-city-street-with-traffic-at-night-42283-large.mp4" type="video/mp4">
+                            <source src="bahan/assets/videos/curug.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <!-- Deskripsi Berada Tepat di Bawah Video -->
+                    <div class="p-8">
+                        <span class="text-xs font-mono text-accent uppercase tracking-widest">Iklan Digital</span>
+                        <h3 class="text-2xl font-bold text-brand mt-2 leading-snug">Cinematic Tempat Wisata</h3>
+                        <p class="text-neutral-500 text-sm mt-3 font-light leading-relaxed">
+                            Pembuatan video cinematic slow motion yang menyorot mengenai tempat wisata alam dengan lagu instrumental yang menenangkan.
+                        </p>
+                        <!-- Kaki Kartu (Tags & Tombol Aksi) -->
+                        <div class="mt-6 pt-6 border-t border-neutral-100 flex flex-wrap gap-4 items-center justify-between">
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-neutral-100 rounded-lg text-xs text-neutral-600 font-medium">Cinematic</span>
+                                <span class="px-3 py-1 bg-neutral-100 rounded-lg text-xs text-neutral-600 font-medium">Tempat Wisata</span>
+                                <span class="px-3 py-1 bg-neutral-100 rounded-lg text-xs text-neutral-600 font-medium">Slow Motion</span>
+                            </div>
+                            <button onclick="openModal('Cinematic Tempat Wisata', 'Video singkat cinematic yang diambil menggunakan smartphone dan editing yang diambil dari beberapa cuplikan pendek yang digabungkan menjadi satu.', 'landscape-3')" class="text-xs font-bold text-accent hover:underline flex items-center gap-1">
+                                <span>Detail Selengkapnya</span>
+                                <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
     <!-- Riwayat Garis Waktu Perjalanan -->
     <section id="timeline" class="py-28 md:py-36 bg-[#FAFAFA] border-y border-neutral-100">
         <div class="max-w-7xl mx-auto px-6 md:px-12">
